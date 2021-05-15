@@ -3,7 +3,7 @@
 
        ENVIRONMENT DIVISION.
        DATA DIVISION.
-
+***************** OBJETIVO: diga se é vogal ou consoante.
        WORKING-STORAGE SECTION.
        77 WRK-LETRA PIC A(1) VALUES SPACES.
 
