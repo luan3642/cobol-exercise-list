@@ -1,0 +1,54 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. PROGRAMA.
+
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+
+       WORKING-STORAGE SECTION.
+       77 WRK-NUM1 PIC 9(3) VALUES ZEROS.
+       77 WRK-NUM2 PIC 9(3) VALUES ZEROS.
+       77 WRK-NUM3 PIC 9(3) VALUES ZEROS.
+
+
+       PROCEDURE DIVISION.
+
+       DISPLAY 'INFORME O PRIMEIRO VALOR'.
+       ACCEPT WRK-NUM1 FROM CONSOLE.
+
+       DISPLAY 'INFORME A SEGUNDO VALOR'
+       ACCEPT WRK-NUM2 FROM CONSOLE.
+
+       DISPLAY 'INFORME O TERCEIRO VALOR'
+       ACCEPT WRK-NUM3 FROM CONSOLE.
+
+
+
+       IF (WRK-NUM1 > WRK-NUM2) AND (WRK-NUM1 > WRK-NUM3 )
+           IF WRK-NUM2 < WRK-NUM3
+               DISPLAY 'MAIOR ' WRK-NUM1 ',' ' MENOR: ' WRK-NUM2
+           END-IF
+           IF WRK-NUM3 < WRK-NUM2
+               DISPLAY 'MAIOR ' WRK-NUM1 ',' 'MENOR: ' WRK-NUM3
+           END-IF
+       END-IF.
+
+       IF (WRK-NUM2 > WRK-NUM1) AND (WRK-NUM2 > WRK-NUM3)
+           IF WRK-NUM1 < WRK-NUM3
+                DISPLAY 'MAIOR ' WRK-NUM2 ',' 'MENOR: ' WRK-NUM1
+           END-IF
+           IF WRK-NUM3 < WRK-NUM1
+                DISPLAY 'MAIOR ' WRK-NUM2 ', ' 'MENOR: ' WRK-NUM3
+           END-IF
+       END-IF.
+
+       IF (WRK-NUM3 > WRK-NUM1) AND (WRK-NUM3 > WRK-NUM2)
+           IF WRK-NUM1 < WRK-NUM2
+                DISPLAY 'MAIOR ' WRK-NUM3 ', ' 'MENOR: ' WRK-NUM1
+           END-IF
+           IF WRK-NUM2 < WRK-NUM1
+                DISPLAY 'MAIOR ' WRK-NUM3 ', ' 'MENOR: ' WRK-NUM2
+           END-IF
+
+       END-IF.
+
+       STOP RUN.
