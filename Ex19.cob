@@ -24,6 +24,6 @@
                DISPLAY 'MASCULINO'
            WHEN OTHER
                DISPLAY 'SEXO INVALIDO'
-
+       END-EVALUATE
 
        STOP RUN.

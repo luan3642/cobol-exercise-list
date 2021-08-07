@@ -75,7 +75,7 @@
                DISPLAY WRK-NUM3
                DISPLAY WRK-NUM1
                DISPLAY WRK-NUM2
-
+       END-IF
 
 
 

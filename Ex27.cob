@@ -54,4 +54,5 @@
                DISPLAY 'SALARIO ANTES DO REAJUSTE ' WRK-SALARIO-ED
                DISPLAY 'AUMENTO DE 5% '
                DISPLAY 'NOVO SALARIO ' WRK-REAJUSTE-ED
+       END-IF
        STOP RUN.

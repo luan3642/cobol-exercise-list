@@ -32,7 +32,7 @@
        ELSE
            IF WRK-NM1 EQUAL TO WRK-NM2
                DISPLAY 'NUMERO IGUAIS'
-
+       END-IF
 
 
        STOP RUN.

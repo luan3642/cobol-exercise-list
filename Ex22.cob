@@ -33,6 +33,6 @@
            IF WRK-NM3 > WRK-NM1 AND WRK-NM3> WRK-NM2
                DISPLAY 'MAIOR: ' WRK-NM3
 
-
+       END-IF
 
        STOP RUN.

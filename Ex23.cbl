@@ -56,6 +56,6 @@
                AND WRK-NM2 > WRK-NM1
                DISPLAY 'MAIOR: ' WRK-NM3
                DISPLAY 'MENOR: ' WRK-NM2
-
+       END-IF
 
        STOP RUN.

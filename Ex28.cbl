@@ -1,6 +1,6 @@
 
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. EX27.
+       PROGRAM-ID. EX28.
        AUTHOR: LUAN MAGALHAES
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
@@ -9,10 +9,40 @@
        DATA DIVISION.
 
        WORKING-STORAGE SECTION.
+       77 WRK-NM PIC 9(01) VALUE ZEROS.
 
 
 
        PROCEDURE DIVISION.
+       DISPLAY 'ESCOLHA UM DIA'
+       DISPLAY '1 - DOMINGO'
+       DISPLAY '2 - SEGUNDA'
+       DISPLAY '3 - TERCEIRA FEIRA'
+       DISPLAY '4 - QUARTA FEIRA'
+       DISPLAY '5 - QUINTA FEIRA'
+       DISPLAY '6 - SEXTA FEIRA'
+       DISPLAY '7 - SABADO'
 
 
+       DISPLAY 'INFORME UM NUMERO'
+       ACCEPT WRK-NM FROM CONSOLE.
+
+       EVALUATE WRK-NM
+           WHEN 1
+               DISPLAY '1 - DOMINGO'
+           WHEN 2
+               DISPLAY '2 - SEGUNDA FEIRA'
+           WHEN 3
+               DISPLAY '3 - TERCEIRA FEIRA'
+           WHEN 4
+               DISPLAY '4 - QUARTA FEIRA'
+           WHEN 5
+               DISPLAY '5 - QUINTA FEIRA'
+           WHEN 6
+               DISPLAY '6 - SEXTA FEIRA'
+           WHEN 7
+               DISPLAY '7 - SABADO'
+           WHEN OTHER
+               DISPLAY 'OPCAO INVALIDA'
+       END-EVALUATE
        STOP RUN.

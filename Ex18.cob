@@ -23,7 +23,7 @@
            DISPLAY 'NUMERO NEGATIVO'
        ELSE
            DISPLAY 'NUMERO POSITIVO'
-
+       END-IF
 
 
        STOP RUN.

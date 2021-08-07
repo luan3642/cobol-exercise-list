@@ -39,5 +39,5 @@
                DISPLAY 'BOA NOITE'
            WHEN OTHER
                DISPLAY 'OPCAO INVALIDA'
-
+       END-EVALUATE
        STOP RUN.
