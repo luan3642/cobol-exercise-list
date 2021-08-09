@@ -10,8 +10,8 @@
 
        WORKING-STORAGE SECTION.
        01 WRK-NOTA.
-           05 WRK-NT1 PIC 9(03)V99 VALUE ZEROS.
-           05 WRK-NT2 PIC 9(03)V99 VALUE ZEROS.
+           05 WRK-NT1 PIC 9(03) VALUE ZEROS.
+           05 WRK-NT2 PIC 9(03) VALUE ZEROS.
 
        77 WRK-MEDIA PIC 9(03)V99 VALUE ZEROS.
        77 WRK-MEDIA-ED PIC Z99 VALUE ZEROS.
@@ -26,18 +26,38 @@
 
 
        COMPUTE WRK-MEDIA = (WRK-NT1 + WRK-NT2) / 2.
-
+       MOVE WRK-MEDIA TO WRK-MEDIA-ED.
        EVALUATE WRK-MEDIA
            WHEN 9,00 THRU 10,00
-               DISPLAY 'CONCEITO A'
+               DISPLAY 'NOTA 1 ' WRK-NT1
+               DISPLAY 'NOTA 2 ' WRK-NT2
+               DISPLAY 'MEDIA: ' WRK-MEDIA-ED
+               DISPLAY 'CONCEITO A '
+               DISPLAY 'APROVADO'
            WHEN 7,50 THRU 8,99
+               DISPLAY 'NOTA 1 ' WRK-NT1
+               DISPLAY 'NOTA 2 ' WRK-NT2
+               DISPLAY 'MEDIA: ' WRK-MEDIA-ED
                DISPLAY 'CONCEITO B'
-           WHEN 6,00 THRU 6,99
+               DISPLAY 'APROVADO'
+           WHEN 6,00 THRU 7,49
+               DISPLAY 'NOTA 1 ' WRK-NT1
+               DISPLAY 'NOTA 2 ' WRK-NT2
+               DISPLAY 'MEDIA: ' WRK-MEDIA-ED
                DISPLAY 'CONCEITO C'
+               DISPLAY 'APROVADO'
            WHEN 4,00 THRU 5,99
+               DISPLAY 'NOTA 1 ' WRK-NT1
+               DISPLAY 'NOTA 2 ' WRK-NT2
+               DISPLAY 'MEDIA: ' WRK-MEDIA-ED
                DISPLAY 'CONCEITO D'
+               DISPLAY 'REPROVADO'
            WHEN 0,0 THRU 3,99
+               DISPLAY 'NOTA 1 ' WRK-NT1
+               DISPLAY 'NOTA 2 ' WRK-NT2
+               DISPLAY 'MEDIA: ' WRK-MEDIA-ED
                DISPLAY 'CONCEITO E'
+               DISPLAY 'REPROVADO'
        END-EVALUATE.
 
 
