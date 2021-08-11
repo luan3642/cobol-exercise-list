@@ -8,9 +8,50 @@
        DATA DIVISION.
 
        WORKING-STORAGE SECTION.
-
-
+       77 WRK-COMBUSTIVEL PIC A(01) VALUE SPACES.
+       77 WRK-LITRO PIC 9(03) VALUE ZEROS.
+       77 WRK-TOTAL PIC 9(04)V99 VALUE ZEROS.
+       77 WRK-PAGAR PIC 9(04)V99 VALUE ZEROS.
+       77 WRK-PORCENTAGEM PIC 9(03)V99 VALUE ZEROS.
+       77 WRK-PAGAR-ED PIC ZZ99 VALUE ZEROS.
        PROCEDURE DIVISION.
+       DISPLAY 'TABELA'
+       DISPLAY 'A - ALCOOL'
+       DISPLAY 'G - GASOLINA'
+       ACCEPT WRK-COMBUSTIVEL FROM CONSOLE.
 
+       DISPLAY''
+       DISPLAY 'INFORME QUANTOS LITROS VOCE ABASTECEU?'
+       ACCEPT WRK-LITRO FROM CONSOLE.
+
+       EVALUATE WRK-COMBUSTIVEL
+           WHEN 'A'
+              IF WRK-LITRO <=20
+                  COMPUTE WRK-TOTAL = (1,90 * WRK-LITRO)
+                  COMPUTE WRK-PORCENTAGEM = (3 / 100) * WRK-TOTAL
+                  COMPUTE WRK-PAGAR = WRK-TOTAL - WRK-PORCENTAGEM
+                  DISPLAY 'VALOR: ' WRK-PAGAR-ED
+              ELSE
+                  IF WRK-LITRO >20
+                   COMPUTE WRK-TOTAL = (1,90 * WRK-LITRO)
+                   COMPUTE WRK-PORCENTAGEM = (5 / 100) * WRK-TOTAL
+                   COMPUTE WRK-PAGAR = WRK-TOTAL - WRK-PORCENTAGEM
+                   MOVE WRK-PAGAR TO WRK-PAGAR-ED
+                   DISPLAY 'VALOR: ' WRK-PAGAR-ED
+           WHEN 'G'
+               IF WRK-LITRO <=20
+                  COMPUTE WRK-TOTAL = (1,90 * WRK-LITRO)
+                  COMPUTE WRK-PORCENTAGEM = (4 / 100) * WRK-TOTAL
+                  COMPUTE WRK-PAGAR = WRK-TOTAL - WRK-PORCENTAGEM
+                  DISPLAY 'VALOR: ' WRK-PAGAR-ED
+              ELSE
+                  IF WRK-LITRO >20
+                   COMPUTE WRK-TOTAL = (1,90 * WRK-LITRO)
+                   COMPUTE WRK-PORCENTAGEM = (6 / 100) * WRK-TOTAL
+                   COMPUTE WRK-PAGAR = WRK-TOTAL - WRK-PORCENTAGEM
+                   MOVE WRK-PAGAR TO WRK-PAGAR-ED
+                   DISPLAY 'VALOR: ' WRK-PAGAR-ED
+
+       END-EVALUATE
 
        STOP RUN.
