@@ -8,9 +8,64 @@
        DATA DIVISION.
 
        WORKING-STORAGE SECTION.
-
+       77 WRK-CONTADOR PIC 9(01) VALUE ZEROS.
+       01 WRK-PERGUNTA.
+           05 WRK-ASK1 PIC A(01)
+                VALUE SPACES.
+           05 WRK-ASK2 PIC A(01)
+                VALUE SPACES.
+           05 WRK-ASK3 PIC A(01)
+                VALUE SPACES.
+           05 WRK-ASK4 PIC A(01)
+                VALUE SPACES.
+           05 WRK-ASK5 PIC A(01)
+               VALUE SPACES.
 
        PROCEDURE DIVISION.
 
+       DISPLAY 'TELEFONOU PARA A VITIMA?'
+       ACCEPT WRK-ASK1 FROM CONSOLE.
+
+       DISPLAY 'ESTEVE NO LOCAL DO CRIME?'
+       ACCEPT WRK-ASK2 FROM CONSOLE.
+
+       DISPLAY 'MORA PERTO DA VITIMA?'
+       ACCEPT WRK-ASK3 FROM CONSOLE.
+
+       DISPLAY 'DEVIA PARA A VITIMA?'
+       ACCEPT WRK-ASK4 FROM CONSOLE.
+
+       DISPLAY 'JA TRABALHOU COM A VITIMA?'
+       ACCEPT WRK-ASK5 FROM CONSOLE.
+
+       IF WRK-ASK1 EQUAL 'S'
+           COMPUTE WRK-CONTADOR = WRK-CONTADOR + 1
+       END-IF
+
+       IF WRK-ASK2 EQUAL 'S'
+           COMPUTE WRK-CONTADOR = WRK-CONTADOR + 1
+       END-IF
+
+       IF WRK-ASK3 EQUAL 'S'
+           COMPUTE WRK-CONTADOR = WRK-CONTADOR + 1
+       END-IF
+
+       IF WRK-ASK4 EQUAL 'S'
+           COMPUTE WRK-CONTADOR = WRK-CONTADOR + 1
+       END-IF
+
+       IF WRK-ASK5 EQUAL 'S'
+           COMPUTE WRK-CONTADOR = WRK-CONTADOR + 1
+       END-IF
+
+       IF WRK-CONTADOR EQUAL TO 5
+           DISPLAY 'ASSASSINO'
+       ELSE
+           IF WRK-CONTADOR EQUAL TO 2
+               DISPLAY 'Suspeito'
+       ELSE
+           IF WRK-CONTADOR >=3 AND WRK-CONTADOR <=4
+               DISPLAY 'Cumplice'
+       END-IF
 
        STOP RUN.
