@@ -1,0 +1,263 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. EX38.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           DECIMAL-POINT IS COMMA.
+       DATA DIVISION.
+
+
+       WORKING-STORAGE SECTION.
+       77 WRK-TIPO-CARNE PIC 9(01) VALUE ZEROS.
+       77 WRK-QUANTIDADE-CARNE PIC 9(02) VALUE ZEROS.
+       77 WRK-CARTAO  PIC A(01) VALUE SPACES.
+       77 WRK-CALC1 PIC 9(03) VALUE ZEROS.
+       77 WRK-CALC2 PIC 9(03)V99 VALUE ZEROS.
+       77 WRK-CALC3 PIC 9(03)V99 VALUE ZEROS.
+
+
+       PROCEDURE DIVISION.
+
+       0001-PRINCIPAL SECTION.
+       PERFORM 0100-INICIAR.
+
+       STOP RUN.
+
+
+       0100-INICIAR SECTION.
+
+       DISPLAY '1 - FILE DUPLO'.
+       DISPLAY '2- ALCATRA'.
+       DISPLAY '3- PICANHA'.
+       ACCEPT WRK-TIPO-CARNE FROM CONSOLE.
+
+       DISPLAY 'A COMPRA E FEITA NO CARTAO?'
+       ACCEPT WRK-CARTAO FROM CONSOLE.
+
+       DISPLAY 'INFORME A QUANTIDADE DA COMPRA DA CARNE'
+       ACCEPT WRK-QUANTIDADE-CARNE FROM CONSOLE
+
+
+       .
+
+
+
+       EVALUATE WRK-TIPO-CARNE
+           WHEN 1
+               IF WRK-QUANTIDADE-CARNE <=5
+                  EVALUATE WRK-CARTAO
+                       WHEN 'S'
+                       WHEN 's'
+                           PERFORM 1000-CARTAO-MENOR5
+                       WHEN 'N'
+                       WHEN 'n'
+                           PERFORM 1050-NAO-CARTAO-MENOR5
+                   END-EVALUATE
+               ELSE
+                   IF WRK-QUANTIDADE-CARNE >5
+                       EVALUATE WRK-CARTAO
+                       WHEN 'S'
+                       WHEN 's'
+                           PERFORM 1100-CARTAO-MAIOR5
+                       WHEN 'N'
+                       WHEN 'n'
+                           PERFORM 1150-NAO-CARTAO-MAIOR5
+                    END-IF
+               END-IF
+           WHEN 2
+               IF WRK-QUANTIDADE-CARNE <=5
+                  EVALUATE WRK-CARTAO
+                       WHEN 'S'
+                       WHEN 's'
+                           PERFORM 1200-CARTAO-MENOR5-ALCATRA
+                       WHEN 'N'
+                       WHEN 'n'
+                           PERFORM 1250-NAO-CARTAO-MENOR5-ALCA
+                   END-EVALUATE
+               ELSE
+                   IF WRK-QUANTIDADE-CARNE >5
+                       EVALUATE WRK-CARTAO
+                       WHEN 'S'
+                       WHEN 's'
+                           PERFORM 1260-CARTAO-MAIOR5-ALCATRA
+                       WHEN 'N'
+                       WHEN 'n'
+                           PERFORM 1270-NOT-CARTAO-MAIOR5-ALCATRA
+                    END-IF
+               END-IF
+           WHEN 3
+               IF WRK-QUANTIDADE-CARNE <=5
+                  EVALUATE WRK-CARTAO
+                       WHEN 'S'
+                       WHEN 's'
+                           PERFORM 1300-CARTAO-MENOR5-PICANHA
+                       WHEN 'N'
+                       WHEN 'n'
+                           PERFORM 1310-NAO-CARTAO-MENOR5-PICANHA
+                   END-EVALUATE
+               ELSE
+                   IF WRK-QUANTIDADE-CARNE >5
+                       EVALUATE WRK-CARTAO
+                       WHEN 'S'
+                       WHEN 's'
+                           PERFORM 1320-CARTAO-MAIOR5-PICANHA
+                       WHEN 'N'
+                       WHEN 'n'
+                           PERFORM 1330-NOT-CARTAO-MAIOR5-ALCATRA
+                    END-IF
+               END-IF
+
+           END-EVALUATE
+           .
+
+
+
+       1000-CARTAO-MENOR5 SECTION.
+           COMPUTE WRK-CALC1 = 4,90 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC2 = (5 / 100) * WRK-CALC1
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+
+           DISPLAY 'SECTION 1'
+           DISPLAY 'TIPO CARNE: FILE DUPLO'
+           DISPLAY 'QUANTIDADE CARNE: ' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' WRK-CALC2
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+
+           .
+       1050-NAO-CARTAO-MENOR5 SECTION.
+           COMPUTE WRK-CALC1 = 4,90 * WRK-QUANTIDADE-CARNE
+
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+
+           DISPLAY 'SECTION 2'
+           DISPLAY 'TIPO CARNE: FILE DUPLO'
+           DISPLAY 'QUANTIDADE CARNE: ' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' ZEROS
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+
+           .
+
+       1100-CARTAO-MAIOR5 SECTION.
+           COMPUTE WRK-CALC1 = 5,80 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC2 = (5 / 100) * WRK-CALC1
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+           DISPLAY 'SECTION 3'
+           DISPLAY 'TIPO CARNE: FILE DUPLO'
+           DISPLAY 'QUANTIDADE CARNE:' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' WRK-CALC2
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+           .
+
+       1150-NAO-CARTAO-MAIOR5 SECTION.
+           COMPUTE WRK-CALC1 = 5,80 * WRK-QUANTIDADE-CARNE
+
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+           DISPLAY 'SECTION 4'
+           DISPLAY 'TIPO CARNE: FILE DUPLO'
+           DISPLAY 'QUANTIDADE CARNE:' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' ZEROS
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+           .
+
+       1200-CARTAO-MENOR5-ALCATRA SECTION.
+           COMPUTE WRK-CALC1 = 5,90 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC2 = (5 / 100) * WRK-CALC1
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+
+           DISPLAY 'SECTION 5'
+           DISPLAY 'TIPO CARNE: ALCATRA'
+           DISPLAY 'QUANTIDADE CARNE: ' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' WRK-CALC2
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+
+           .
+       1250-NAO-CARTAO-MENOR5-ALCA SECTION.
+           COMPUTE WRK-CALC1 = 5,90 * WRK-QUANTIDADE-CARNE
+
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+
+           DISPLAY 'SECTION 6'
+           DISPLAY 'TIPO CARNE: ALCATRA'
+           DISPLAY 'QUANTIDADE CARNE: ' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' ZEROS
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+
+           .
+       1260-CARTAO-MAIOR5-ALCATRA SECTION.
+           COMPUTE WRK-CALC1 = 6,80 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC2 = (5 / 100) * WRK-CALC1
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+           DISPLAY 'SECTION 7'
+           DISPLAY 'TIPO CARNE: ALCATRA'
+           DISPLAY 'QUANTIDADE CARNE:' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' WRK-CALC2
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+           .
+       1270-NOT-CARTAO-MAIOR5-ALCATRA SECTION.
+           COMPUTE WRK-CALC1 = 6,80 * WRK-QUANTIDADE-CARNE
+
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+           DISPLAY 'SECTION 8'
+           DISPLAY 'TIPO CARNE: ALCATRA'
+           DISPLAY 'QUANTIDADE CARNE:' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' ZEROS
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+           .
+
+       1300-CARTAO-MENOR5-PICANHA SECTION.
+           COMPUTE WRK-CALC1 = 6,90 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC2 = (5 / 100) * WRK-CALC1
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+
+           DISPLAY 'SECTION 9'
+           DISPLAY 'TIPO CARNE: PICANHA'
+           DISPLAY 'QUANTIDADE CARNE: ' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' WRK-CALC2
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+
+           .
+       1310-NAO-CARTAO-MENOR5-PICANHA SECTION.
+           COMPUTE WRK-CALC1 = 6,90 * WRK-QUANTIDADE-CARNE
+
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+
+           DISPLAY 'SECTION 10'
+           DISPLAY 'TIPO CARNE: PICANHA'
+           DISPLAY 'QUANTIDADE CARNE: ' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' ZEROS
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+
+           .
+       1320-CARTAO-MAIOR5-PICANHA SECTION.
+           COMPUTE WRK-CALC1 = 7,80 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC2 = (5 / 100) * WRK-CALC1
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+           DISPLAY 'SECTION 11'
+           DISPLAY 'TIPO CARNE: PICANHA'
+           DISPLAY 'QUANTIDADE CARNE:' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' WRK-CALC2
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+           .
+       1330-NOT-CARTAO-MAIOR5-ALCATRA SECTION.
+           COMPUTE WRK-CALC1 = 7,80 * WRK-QUANTIDADE-CARNE
+           COMPUTE WRK-CALC3 = WRK-CALC1 - WRK-CALC2
+           DISPLAY 'SECTION 12'
+           DISPLAY 'TIPO CARNE: PICANHA'
+           DISPLAY 'QUANTIDADE CARNE:' WRK-QUANTIDADE-CARNE
+           DISPLAY 'CARTAO TABAJARA? ' WRK-CARTAO
+           DISPLAY 'DESCONTO: ' ZEROS
+           DISPLAY 'PRECO TOTAL: ' WRK-CALC3
+           .
+       STOP RUN.
