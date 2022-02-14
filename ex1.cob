@@ -6,4 +6,4 @@
 
 
        PROCEDURE DIVISION.
-           DISPLAY 'HELLO'
+           DISPLAY 'HELLO'.
